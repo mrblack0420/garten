@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BlütenGarten – Der Online-Gartenkurs für deinen Traumgarten</title>
+  <meta name="description" content="Lerne in diesem Online-Gartenkurs, wie du deinen eigenen blühenden Traumgarten anlegst – Schritt für Schritt, von Zuhause aus." />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-deep: #2d4a2d;
+      --green-mid: #4a7c59;
+      --green-light: #7dab6e;
+      --cream: #f5f0e8;
+      --warm-white: #fdfaf4;
+      --brown: #6b4c2a;
+      --gold: #c9a84c;
+      --text-dark: #1e2e1e;
+      --text-mid: #3d5c3d;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--warm-white);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(160deg, rgba(45,74,45,0.88) 0%, rgba(74,124,89,0.75) 60%, rgba(125,171,110,0.5) 100%),
+        url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1400&q=80') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 80px;
+      background: linear-gradient(to top, var(--warm-white), transparent);
+    }
+
+    .hero-inner { max-width: 780px; animation: fadeUp 1s ease both; }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(201,168,76,0.25);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.4rem 1.2rem;
+      border-radius: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: #b8e0a0;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: rgba(255,255,255,0.88);
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      font-weight: 300;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--text-dark);
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 1rem 2.5rem;
+      border-radius: 3rem;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201,168,76,0.55);
+    }
+
+    .hero-note {
+      margin-top: 1rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ─── SOCIAL PROOF BAR ─── */
+    .proof-bar {
+      background: var(--green-deep);
+      color: #fff;
+      padding: 1.1rem 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+    }
+
+    .proof-bar span { display: flex; align-items: center; gap: 0.5rem; }
+    .proof-bar .num { font-size: 1.3rem; font-weight: 700; color: var(--gold); }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 5rem 1.5rem; }
+
+    .container { max-width: 900px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 0.6rem;
+      font-weight: 700;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--green-deep);
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+      max-width: 640px;
+      font-weight: 300;
+    }
+
+    /* ─── PROBLEM / SOLUTION ─── */
+    .problem { background: var(--cream); }
+
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .pain-card {
+      background: #fff;
+      border-radius: 1rem;
+      padding: 1.8rem;
+      border-left: 4px solid var(--green-light);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .pain-card .icon { font-size: 2rem; margin-bottom: 0.8rem; }
+    .pain-card h3 { font-size: 1rem; font-weight: 700; color: var(--green-deep); margin-bottom: 0.4rem; }
+    .pain-card p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.6; font-weight: 300; }
+
+    /* ─── WHAT YOU GET ─── */
+    .benefits-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .benefit {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .benefit-icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--green-light), var(--green-mid));
+      border-radius: 0.75rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .benefit h3 { font-size: 0.95rem; font-weight: 700; color: var(--green-deep); margin-bottom: 0.3rem; }
+    .benefit p { font-size: 0.85rem; color: var(--text-mid); line-height: 1.6; font-weight: 300; }
+
+    /* ─── ABOUT INSTRUCTOR ─── */
+    .instructor { background: var(--green-deep); color: #fff; }
+
+    .instructor-inner {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .instructor-img {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 1.5rem;
+      object-fit: cover;
+      background: linear-gradient(135deg, var(--green-mid), var(--green-light));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem;
+    }
+
+    .instructor .section-label { color: var(--gold); }
+    .instructor .section-title { color: #fff; }
+    .instructor p { color: rgba(255,255,255,0.8); line-height: 1.75; font-weight: 300; margin-top: 1rem; }
+
+    /* ─── REVIEWS ─── */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .review-card {
+      background: #fff;
+      border-radius: 1.2rem;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      position: relative;
+    }
+
+    .review-card::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      color: var(--green-light);
+      position: absolute;
+      top: -0.5rem; left: 1.2rem;
+      line-height: 1;
+      opacity: 0.3;
+    }
+
+    .stars { color: var(--gold); font-size: 1rem; margin-bottom: 0.8rem; }
+    .review-text { font-size: 0.92rem; color: var(--text-mid); line-height: 1.7; font-weight: 300; margin-bottom: 1.2rem; }
+    .reviewer { display: flex; align-items: center; gap: 0.8rem; }
+    .reviewer-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-light), var(--green-mid));
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 700; font-size: 0.9rem;
+    }
+    .reviewer-name { font-weight: 700; font-size: 0.88rem; color: var(--green-deep); }
+    .reviewer-city { font-size: 0.78rem; color: #999; }
+
+    /* ─── CTA SECTION ─── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--green-deep), var(--green-mid));
+      text-align: center;
+      padding: 6rem 1.5rem;
+    }
+
+    .cta-section .section-title { color: #fff; margin-bottom: 1rem; }
+    .cta-section p { color: rgba(255,255,255,0.8); font-size: 1.05rem; max-width: 520px; margin: 0 auto 2.5rem; font-weight: 300; line-height: 1.7; }
+
+    .price-box {
+      display: inline-block;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 1rem;
+      padding: 1.5rem 3rem;
+      margin-bottom: 2rem;
+    }
+
+    .price-box .old-price { text-decoration: line-through; color: rgba(255,255,255,0.5); font-size: 1rem; }
+    .price-box .new-price { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--gold); font-weight: 700; }
+    .price-box .price-note { font-size: 0.8rem; color: rgba(255,255,255,0.6); }
+
+    .guarantee {
+      margin-top: 1.5rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+      display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+    }
+
+    /* ─── FAQ ─── */
+    .faq-list { margin-top: 2.5rem; }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(74,124,89,0.2);
+      padding: 1.3rem 0;
+    }
+
+    .faq-q {
+      font-weight: 700;
+      color: var(--green-deep);
+      font-size: 0.98rem;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+    }
+
+    .faq-a {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--text-dark);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.78rem;
+      line-height: 1.8;
+    }
+
+    footer a { color: rgba(255,255,255,0.5); }
+
+    /* ─── STICKY CTA ─── */
+    .sticky-cta {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      display: none;
+    }
+
+    .sticky-cta a {
+      background: var(--gold);
+      color: var(--text-dark);
+      font-weight: 700;
+      padding: 0.9rem 2rem;
+      border-radius: 3rem;
+      text-decoration: none;
+      font-size: 0.95rem;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+      white-space: nowrap;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 600px) {
+      .proof-bar { gap: 1.5rem; }
+      .instructor-inner { grid-template-columns: 1fr; }
+      .instructor-img { max-width: 140px; }
+      .sticky-cta { display: block; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- STICKY CTA (mobile) -->
+<div class="sticky-cta">
+  <a href="https://bluetengarten.mydigibiz24.com/bluetengarten-gartenkurs-online#aff=Wooddy" target="_blank">🌸 Jetzt Kurs starten →</a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">🌿 Online-Gartenkurs</div>
+    <h1>Dein <em>blühender Traumgarten</em> – endlich zum Greifen nah</h1>
+    <p>Lerne Schritt für Schritt, wie du deinen Garten in eine grüne Oase verwandelst – ganz ohne Vorkenntnisse, direkt von Zuhause aus.</p>
+    <a href="https://bluetengarten.mydigibiz24.com/bluetengarten-gartenkurs-online#aff=Wooddy" target="_blank" class="btn-primary">
+      Jetzt kostenlos reinschauen →
+    </a>
+    <p class="hero-note">✅ Sofortiger Zugang &nbsp;|&nbsp; 30 Tage Geld-zurück-Garantie</p>
+  </div>
+</section>
+
+<!-- ─── SOCIAL PROOF BAR ─── -->
+<div class="proof-bar">
+  <span>🌸 <span class="num">2.400+</span> glückliche Gärtner</span>
+  <span>⭐ <span class="num">4.9/5</span> Bewertung</span>
+  <span>🎓 <span class="num">12</span> Video-Module</span>
+  <span>🔒 <span class="num">30</span> Tage Garantie</span>
+</div>
+
+<!-- ─── PROBLEM ─── -->
+<section class="problem">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Kommt dir das bekannt vor?</p>
+      <h2 class="section-title">Der Garten macht Arbeit – aber keine Freude?</h2>
+      <p class="section-sub">Viele Menschen träumen von einem schönen Garten, wissen aber nicht, wo sie anfangen sollen. Das Ergebnis: Frust statt Blütenmeere.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <div class="icon">😓</div>
+        <h3>Keine Ahnung, was wann gepflanzt wird</h3>
+        <p>Du kaufst Pflanzen, sie gehen ein – und du weißt nicht warum. Der Rhythmus der Natur bleibt ein Rätsel.</p>
+      </div>
+      <div class="pain-card reveal">
+        <div class="icon">🌱</div>
+        <h3>Zu viel Unkraut, zu wenig Blüten</h3>
+        <p>Stunden im Garten verbracht – und trotzdem sieht alles wild und ungepflegt aus. Kein Vergleich mit den Bildern aus dem Katalog.</p>
+      </div>
+      <div class="pain-card reveal">
+        <div class="icon">📚</div>
+        <h3>YouTube & Bücher bringen nichts</h3>
+        <p>Du schaust Videos und liest Ratgeber – aber ein klarer roter Faden fehlt. Zu viel Information, zu wenig System.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SOLUTION / BENEFITS ─── -->
+<section>
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Die Lösung</p>
+      <h2 class="section-title">BlütenGarten – dein persönlicher Gartencoach</h2>
+      <p class="section-sub">Ein strukturierter Online-Kurs, der dich von der leeren Fläche bis zum blühenden Paradies begleitet – praxisnah, verständlich und Schritt für Schritt.</p>
+    </div>
+    <div class="benefits-list">
+      <div class="benefit reveal">
+        <div class="benefit-icon">🗓️</div>
+        <div>
+          <h3>Jahresplan für deinen Garten</h3>
+          <p>Wann was säen, pflanzen und pflegen – du weißt immer, was als Nächstes zu tun ist.</p>
+        </div>
+      </div>
+      <div class="benefit reveal">
+        <div class="benefit-icon">🎥</div>
+        <div>
+          <h3>12 Video-Module in HD</h3>
+          <p>Klar, verständlich, ohne Fachchinesisch. Schau wann und wo du willst – auf PC, Tablet oder Smartphone.</p>
+        </div>
+      </div>
+      <div class="benefit reveal">
+        <div class="benefit-icon">🌺</div>
+        <div>
+          <h3>Für jeden Gartentyp geeignet</h3>
+          <p>Kleiner Balkon, Reihenhausgarten oder großes Grundstück – die Methoden funktionieren überall.</p>
+        </div>
+      </div>
+      <div class="benefit reveal">
+        <div class="benefit-icon">💬</div>
+        <div>
+          <h3>Private Community</h3>
+          <p>Tausche dich mit anderen Gartenenthusiasten aus und bekomme Antworten auf deine Fragen.</p>
+        </div>
+      </div>
+      <div class="benefit reveal">
+        <div class="benefit-icon">📋</div>
+        <div>
+          <h3>Checklisten & Arbeitsblätter</h3>
+          <p>Praktische Vorlagen zum Ausdrucken – damit nichts vergessen wird.</p>
+        </div>
+      </div>
+      <div class="benefit reveal">
+        <div class="benefit-icon">♾️</div>
+        <div>
+          <h3>Lebenslanger Zugang</h3>
+          <p>Einmal kaufen, für immer nutzen. Alle zukünftigen Updates inklusive.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── INSTRUCTOR ─── -->
+<section class="instructor">
+  <div class="container">
+    <div class="instructor-inner reveal">
+      <div class="instructor-img">🌸</div>
+      <div>
+        <p class="section-label">Deine Kursleiterin</p>
+        <h2 class="section-title">Xenia Rabe-Lehmann</h2>
+        <p>Xenia ist leidenschaftliche Gärtnerin und Naturliebhaberin mit über 15 Jahren Erfahrung. Sie hat ihren eigenen Garten von Grund auf aufgebaut und dabei alles gelernt – was funktioniert und was nicht. Heute gibt sie dieses Wissen in verständlicher Sprache weiter, damit auch du deinen Traumgarten verwirklichen kannst.</p>
+        <p style="margin-top: 0.8rem;">„Jeder Mensch verdient einen Garten, der Freude macht. Ich zeige dir wie."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── REVIEWS ─── -->
+<section style="background: var(--cream);">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <p class="section-label">Was andere sagen</p>
+      <h2 class="section-title">Echte Ergebnisse, echte Menschen</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Endlich ein Kurs, der wirklich erklärt WARUM man etwas tut, nicht nur WAS. Mein Garten hat sich in dieser Saison komplett verändert. Ich bin so stolz!</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">SM</div>
+          <div>
+            <div class="reviewer-name">Sabine M.</div>
+            <div class="reviewer-city">München</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Ich habe vorher viel Geld für Bücher ausgegeben. Dieser Kurs hat mir mehr gebracht als alles andere zusammen. Die Videos sind super verständlich und praxisnah.</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">TK</div>
+          <div>
+            <div class="reviewer-name">Thomas K.</div>
+            <div class="reviewer-city">Hamburg</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Als völlige Anfängerin hatte ich keine Ahnung. Jetzt blüht mein Balkon in wunderschönen Farben. Xenia erklärt alles so geduldig – ich hätte nicht gedacht, dass das so schnell geht!</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">LB</div>
+          <div>
+            <div class="reviewer-name">Laura B.</div>
+            <div class="reviewer-city">Berlin</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="cta-section">
+  <div class="container reveal" style="text-align:center;">
+    <p class="section-label" style="color:var(--gold);">Jetzt starten</p>
+    <h2 class="section-title">Dein Traumgarten wartet auf dich</h2>
+    <p>Einmaliger Preis, lebenslanger Zugang. Keine monatlichen Gebühren, kein Abo.</p>
+    <div class="price-box">
+      <div class="old-price">Normalpreis: 299 €</div>
+      <div class="new-price">219 €</div>
+      <div class="price-note">inkl. MwSt. · Einmalzahlung</div>
+    </div>
+    <br/>
+    <a href="https://bluetengarten.mydigibiz24.com/bluetengarten-gartenkurs-online#aff=Wooddy" target="_blank" class="btn-primary" style="font-size:1.1rem; padding: 1.1rem 3rem;">
+      🌸 Jetzt zum BlütenGarten Kurs →
+    </a>
+    <div class="guarantee">🔒 30 Tage Geld-zurück-Garantie – kein Risiko</div>
+  </div>
+</section>
+
+<!-- ─── FAQ ─── -->
+<section>
+  <div class="container">
+    <div class="reveal" style="text-align:center; margin-bottom:0.5rem;">
+      <p class="section-label">FAQ</p>
+      <h2 class="section-title">Häufige Fragen</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <p class="faq-q">🌿 Für wen ist dieser Kurs geeignet?</p>
+        <p class="faq-a">Der Kurs richtet sich an alle – vom absoluten Anfänger bis zum fortgeschrittenen Hobbygärtner. Vorkenntnisse sind nicht nötig.</p>
+      </div>
+      <div class="faq-item reveal">
+        <p class="faq-q">📱 Kann ich den Kurs auf dem Handy schauen?</p>
+        <p class="faq-a">Ja! Der Kurs ist auf allen Geräten verfügbar – PC, Tablet und Smartphone.</p>
+      </div>
+      <div class="faq-item reveal">
+        <p class="faq-q">💶 Gibt es eine Geld-zurück-Garantie?</p>
+        <p class="faq-a">Ja, du hast 30 Tage Zeit, den Kurs auszuprobieren. Wenn du nicht zufrieden bist, bekommst du dein Geld vollständig zurück – ohne Fragen.</p>
+      </div>
+      <div class="faq-item reveal">
+        <p class="faq-q">⏱️ Wie lange habe ich Zugang zum Kurs?</p>
+        <p class="faq-a">Lebenslang! Du bezahlst einmal und hast für immer Zugang – inklusive aller zukünftigen Updates.</p>
+      </div>
+      <div class="faq-item reveal">
+        <p class="faq-q">🌍 Funktioniert der Kurs auch für kleine Gärten oder Balkons?</p>
+        <p class="faq-a">Absolut! Die Techniken im Kurs sind für jeden Gartentyp angepasst – egal ob großer Garten, Terrasse oder kleiner Stadtbalkon.</p>
+      </div>
+    </div>
+    <div class="reveal" style="text-align:center; margin-top: 3rem;">
+      <a href="https://bluetengarten.mydigibiz24.com/bluetengarten-gartenkurs-online#aff=Wooddy" target="_blank" class="btn-primary">
+        Jetzt starten – 30 Tage risikofrei →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <p>Diese Website enthält Affiliate-Links. Beim Kauf über unsere Links erhalten wir eine Provision – für dich entstehen keine Mehrkosten.</p>
+  <p style="margin-top:0.5rem;">© 2025 Garten Ratgeber &nbsp;|&nbsp; <a href="#">Datenschutz</a> &nbsp;|&nbsp; <a href="#">Impressum</a></p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+
+</body>
+</html>
